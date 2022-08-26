@@ -1,23 +1,27 @@
 package com.omrdominio.desafio.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "tb_category")
+@Table(name = "tb_categoria")
 public class Categoria {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
 
+    @OneToMany(mappedBy = "categoria")
+    private List<Atividade> atividades = new ArrayList<>();
     public Categoria(){
 
     }
 
-    public Categoria(Integer id, String name) {
+    public Categoria(Integer id, String descricao) {
         this.id = id;
-        this.name = name;
+        this.descricao = descricao;
     }
 
     public Integer getId() {
@@ -28,11 +32,15 @@ public class Categoria {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public List<Atividade> getAtividades() {
+        return atividades;
     }
 }

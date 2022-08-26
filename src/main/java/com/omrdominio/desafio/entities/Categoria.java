@@ -1,20 +1,21 @@
 package com.omrdominio.desafio.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_category")
-public class Category {
-
+public class Categoria {
+    @Id
     private Integer id;
     private String descricao;
 
-    public Category(){
+    public Categoria(){
 
     }
 
-    public Category(Integer id, String name) {
+    public Categoria(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
